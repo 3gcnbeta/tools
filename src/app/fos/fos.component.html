@@ -1,0 +1,227 @@
+<h2><a [routerLink]="['']">返回</a></h2>
+
+<h1>进口设备抵岸价计算</h1>
+
+<table>
+  <tr>
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label>请输入离岸价(FOB)</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="freeOnBoard"
+          (change)="onFobChange()"
+          (input)="onFobChange()"
+        />
+      </mat-form-field>
+    </td>
+
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label>请输入国外运费费率(%)</mat-label>
+        <mat-slider
+          min="1"
+          max="100"
+          step="0.1"
+          value="1.5"
+          (input)="onInternationalFreightRateSliderChange($event)"
+        ></mat-slider>
+
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="internationalFreightRate"
+          (change)="onInternationalFreightRateChange()"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>请输入国外运费(USD)</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="internationalFreight"
+          (change)="onInternationalFreightChange()"
+        />
+      </mat-form-field>
+    </td>
+
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label>请输入国外运费保险费率(%)</mat-label>
+        <mat-slider
+          min="1"
+          max="100"
+          step="0.1"
+          value="1.5"
+          (input)="onInternationalShippingInsuranceRateSliderChange($event)"
+        ></mat-slider>
+
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="internationalShippingInsuranceRate"
+          (change)="onInternationalShippingInsuranceRateChange()"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>请输入国际运费保险费</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="internationalShippingInsurance"
+          (change)="onInternationalShippingInsuranceChange()"
+        />
+      </mat-form-field>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label>进口设备到岸价格(CIF)</mat-label>
+        <input matInput type="number" [(ngModel)]="costInsuranceFreight" />
+      </mat-form-field>
+    </td>
+
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label>银行财务费率</mat-label>
+        <mat-slider
+          min="1"
+          max="100"
+          step="0.1"
+          value="0.5"
+          (input)="onBankFinanceRateSliderChange($event)"
+        ></mat-slider>
+        <input matInput type="number" [(ngModel)]="bankFinanceRate" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>银行财务费</mat-label>
+        <input matInput type="number" [(ngModel)]="bankFinanceFee" />
+      </mat-form-field>
+    </td>
+
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label>外贸手续费率</mat-label>
+        <mat-slider
+          min="1"
+          max="100"
+          step="0.1"
+          value="0.5"
+          (input)="onForeignTradeFeeRateSliderChange($event)"
+        ></mat-slider>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="foreignTradeFeeRate"
+          (change)="onForeignTradeFeeRateChange()"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>外贸手续费</mat-label>
+        <input matInput type="number" [(ngModel)]="foreignTradeFee" />
+      </mat-form-field>
+    </td>
+
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label>关税税率</mat-label>
+        <mat-slider
+          min="1"
+          max="100"
+          step="0.1"
+          value="0.5"
+          (input)="onTariffRateSliderChange($event)"
+        ></mat-slider>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="tariffRate"
+          (change)="onTariffRateChange()"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>关税</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="tariff"
+          (change)="onTariffChange()"
+        />
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label>抵岸价</mat-label>
+        <input matInput type="number" [(ngModel)]="landedPrice" disabled />
+      </mat-form-field>
+    </td>
+
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label>消费税率</mat-label>
+        <mat-slider
+          min="1"
+          max="100"
+          step="0.1"
+          value="0.5"
+          (input)="onConsumptionTaxRateSliderChange($event)"
+        ></mat-slider>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="consumptionTaxRate"
+          (change)="onConsumptionTaxRateChange()"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>消费税</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="consumptionTax"
+          (change)="onConsumptionTaxChange()"
+        />
+      </mat-form-field>
+    </td>
+
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label>增值税率</mat-label>
+        <mat-slider
+          min="1"
+          max="100"
+          step="0.1"
+          value="0.5"
+          (input)="onValueAddedTaxRateSliderChange($event)"
+        ></mat-slider>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="valueAddedTaxRate"
+          (change)="onValueAddedTaxRateChange()"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>增值税</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="valueAddedTax"
+          (change)="onValueAddedTaxChange()"
+        />
+      </mat-form-field>
+    </td>
+  </tr>
+</table>
